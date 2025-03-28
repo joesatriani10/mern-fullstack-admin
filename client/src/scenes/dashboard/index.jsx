@@ -8,6 +8,9 @@ import {
   Traffic,
 } from "@mui/icons-material";
 import {
+  Modal,
+  Fade,
+  Backdrop,
   Box,
   Button,
   Typography,
@@ -19,11 +22,17 @@ import BreakdownChart from "../../components/BreakDownChart.jsx";
 import OverviewChart from "../../components/OverviewChart.jsx";
 import { useGetDashboardQuery } from "../../state/api";
 import StatBox from "../../components/StatBox";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetDashboardQuery();
+  const [showColdStartModal, setShowColdStartModal] = useState(false);
+
+  useEffect(() => {
+    setShowColdStartModal(true);
+  }, []);
 
   const columns = [
     {
@@ -58,6 +67,47 @@ const Dashboard = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
+      <Modal
+        open={showColdStartModal}
+        onClose={() => setShowColdStartModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{ timeout: 500 }}
+      >
+        <Fade in={showColdStartModal}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 400,
+              bgcolor: "background.paper",
+              borderRadius: 2,
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <Typography variant="h6" component="h2" gutterBottom>
+              ⚠️ Note about API delay
+            </Typography>
+            <Typography sx={{ mt: 1 }}>
+              The backend API is hosted on a free Render.com tier and may take a
+              few seconds to wake up after inactivity. Please be patient when
+              loading this page for the first time.
+            </Typography>
+            <Box textAlign="right" mt={2}>
+              <Button
+                onClick={() => setShowColdStartModal(false)}
+                variant="contained"
+                color="primary"
+              >
+                Got it
+              </Button>
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
       {/* Header Section with Download Button */}
       <FlexBetween>
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
