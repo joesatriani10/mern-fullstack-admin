@@ -5,7 +5,7 @@ import Transaction from "../models/Transaction.js";
 export const getUser = async (req, res) => {
     try {
         const {id} = req.params;
-        console.log(`id: ${id}`);
+        //console.log(`id: ${id}`);
         const user = await User.findById(id).select("-password");
         res.status(200).json(user);
 

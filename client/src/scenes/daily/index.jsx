@@ -26,7 +26,7 @@ const Daily = () => {
       data: [],
     };
 
-    console.log("totalUnitsLine:", totalUnitsLine);
+    // console.log("totalUnitsLine:", totalUnitsLine);
 
     Object.values(dailyData).forEach(({ date, totalSales, totalUnits }) => {
       const dateFormatted = new Date(date);

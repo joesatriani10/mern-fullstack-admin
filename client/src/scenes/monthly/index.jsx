@@ -23,7 +23,7 @@ const Monthly = () => {
       data: [],
     };
 
-    console.log("totalUnitsLine:", totalUnitsLine);
+    // console.log("totalUnitsLine:", totalUnitsLine);
 
     Object.values(monthlyData).forEach(({ month, totalSales, totalUnits }) => {
       totalSalesLine.data.push({ x: month, y: totalSales });
