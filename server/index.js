@@ -33,8 +33,19 @@ app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+const allowedOrigins = [
+    "https://mern-fullstack-frontend-2xyzjefxa-joesatriani10s-projects.vercel.app",
+    "https://mern-fullstack-frontend-ten.vercel.app"
+];
+
 app.use(cors({
-    origin: "https://mern-fullstack-frontend-2xyzjefxa-joesatriani10s-projects.vercel.app"
+    origin: function(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS: " + origin));
+        }
+    }
 }));
 
 /* ROUTES */
