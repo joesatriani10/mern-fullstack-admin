@@ -89,11 +89,11 @@ const Dashboard = () => {
             }}
           >
             <Typography variant="h6" component="h2" gutterBottom>
-              ⚠️ Note about API delay
+              ⚠️ Note about API delay (up to 50 seconds)
             </Typography>
             <Typography sx={{ mt: 1 }}>
-              The backend API is hosted on a free Render.com tier and may take a
-              few seconds to wake up after inactivity. Please be patient when
+              The backend API is hosted on a free Web Service tier and may take
+              a few seconds to wake up after inactivity. Please be patient when
               loading this page for the first time.
             </Typography>
             <Box textAlign="right" mt={2}>
