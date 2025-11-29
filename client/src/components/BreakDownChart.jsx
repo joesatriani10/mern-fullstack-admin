@@ -27,8 +27,9 @@ const BreakDownChart = ({ isDashboard = false }) => {
   return (
     <Box
       height={isDashboard ? "400px" : "100%"}
-      minHeight={isDashboard ? "325px" : undefined}
-      minWidth={isDashboard ? "325px" : undefined}
+      minHeight={isDashboard ? "280px" : undefined}
+      minWidth={isDashboard ? 0 : undefined}
+      width="100%"
       position="relative"
     >
       <ResponsivePie
@@ -124,9 +125,8 @@ const BreakDownChart = ({ isDashboard = false }) => {
         color={theme.palette.primary[700]}
         textAlign="center"
         sx={{
-          transform: isDashboard
-            ? "translate(-75%, -170%)"
-            : "translate(-50%, -100%)",
+          transform: "translate(-50%, -50%)",
+          whiteSpace: "nowrap",
         }}
       >
         <Typography variant="h6" fontWeight="bold">

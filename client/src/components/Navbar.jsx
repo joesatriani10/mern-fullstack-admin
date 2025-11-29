@@ -22,11 +22,14 @@ import {
   Menu,
   MenuItem,
   useTheme,
+  useMediaQuery,
 } from "@mui/material";
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const isMdDown = useMediaQuery("(max-width: 900px)");
+  const isSmDown = useMediaQuery("(max-width: 600px)");
 
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
@@ -42,20 +45,36 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         boxShadow: "none",
       }}
     >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: isSmDown ? "0.75rem" : 0,
+        }}
+      >
         {/* LEFT SIDE */}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            flex: isSmDown ? "1 1 100%" : "0 0 auto",
+            minWidth: 0,
+          }}
+        >
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon sx={{ color: theme.palette.navbar.icon }} />
           </IconButton>
           <Box
             sx={{
-              display: "flex",
+              display: isSmDown ? "none" : "flex",
               alignItems: "center",
               backgroundColor: theme.palette.background.alt,
               borderRadius: "9px",
-              gap: "1.5rem",
-              p: "0.1rem 1.5rem",
+              gap: isMdDown ? "0.75rem" : "1.5rem",
+              p: isMdDown ? "0.1rem 0.75rem" : "0.1rem 1.5rem",
+              width: isMdDown ? "200px" : "260px",
               border: `1px solid ${theme.palette.navbar.border}`,
             }}
           >
@@ -70,7 +89,14 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         </Box>
 
         {/* RIGHT SIDE */}
-        <FlexBetween gap="1.5rem">
+        <FlexBetween
+          gap={isMdDown ? "1rem" : "1.5rem"}
+          sx={{
+            flexWrap: isSmDown ? "wrap" : "nowrap",
+            width: isSmDown ? "100%" : "auto",
+            justifyContent: isSmDown ? "flex-start" : "flex-end",
+          }}
+        >
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlined

@@ -12,9 +12,12 @@ const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
   const theme = useTheme();
 
   return (
-    <GridToolbarContainer>
-      <FlexBetween width="100%">
-        <FlexBetween>
+    <GridToolbarContainer sx={{ width: "100%" }}>
+      <FlexBetween
+        width="100%"
+        sx={{ flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}
+      >
+        <FlexBetween sx={{ flexWrap: "wrap", gap: "0.35rem" }}>
           <GridToolbarColumnsButton />
           <GridToolbarDensitySelector />
           <GridToolbarExport />
@@ -23,7 +26,8 @@ const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
           label="Search..."
           sx={{
             mb: "0.5rem",
-            width: "15rem",
+            width: { xs: "100%", sm: "15rem" },
+            maxWidth: "100%",
             "& .MuiInputBase-root": {
               color: theme.palette.primary[700],
               borderBottom: `2px solid ${theme.palette.primary[500]}`,
@@ -54,6 +58,7 @@ const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
               ),
             },
           }}
+          fullWidth
         />
       </FlexBetween>
     </GridToolbarContainer>

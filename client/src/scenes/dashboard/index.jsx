@@ -136,9 +136,14 @@ const Dashboard = () => {
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
         gap="20px"
+        sx={{
+          "& > div": {
+            minWidth: 0,
+          },
+        }}
       >
         {/* First Row - 4 StatBoxes aligned in one line */}
-        <Box gridColumn="span 3">
+        <Box gridColumn={isNonMediumScreens ? "span 3" : "span 12"}>
           <StatBox
             title="Total Customers"
             value={data?.totalCustomers}
@@ -152,7 +157,7 @@ const Dashboard = () => {
           />
         </Box>
 
-        <Box gridColumn="span 3">
+        <Box gridColumn={isNonMediumScreens ? "span 3" : "span 12"}>
           <StatBox
             title="Sales Today"
             value={data?.todayStats.totalSales}
@@ -166,7 +171,7 @@ const Dashboard = () => {
           />
         </Box>
 
-        <Box gridColumn="span 3">
+        <Box gridColumn={isNonMediumScreens ? "span 3" : "span 12"}>
           <StatBox
             title="Monthly Sales"
             value={data?.thisMonthStats.totalSales}
@@ -180,7 +185,7 @@ const Dashboard = () => {
           />
         </Box>
 
-        <Box gridColumn="span 3">
+        <Box gridColumn={isNonMediumScreens ? "span 3" : "span 12"}>
           <StatBox
             title="Yearly Sales"
             value={data?.yearlySalesTotal}
@@ -196,7 +201,7 @@ const Dashboard = () => {
 
         {/* Second Row - OverviewChart and BreakdownChart side by side */}
         <Box
-          gridColumn="span 6"
+          gridColumn={isNonMediumScreens ? "span 6" : "span 12"}
           gridRow="span 3"
           backgroundColor={theme.palette.background.alt}
           p="1rem"
@@ -209,7 +214,7 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          gridColumn="span 6"
+          gridColumn={isNonMediumScreens ? "span 6" : "span 12"}
           gridRow="span 3"
           backgroundColor={theme.palette.background.alt}
           p="1.5rem"
