@@ -34,7 +34,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 const allowedOrigins = [
-    "https://mern-fullstack-frontend-2xyzjefxa-joesatriani10s-projects.vercel.app",
+    "https://mern.angelmontesdev.com",
     "https://mern-fullstack-frontend-ten.vercel.app",
     "http://localhost:5173"
 
